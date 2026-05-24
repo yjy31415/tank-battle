@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Cache & output (generated files)
+ashare-backtest/cache/
+ashare-backtest/output/
+
+# IDE
+.vscode/
+.idea/
