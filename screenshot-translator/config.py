@@ -1,6 +1,6 @@
 import json
 import os
-from dataclasses import dataclass, asdict, field
+from dataclasses import dataclass, asdict, fields as dc_fields
 from pathlib import Path
 
 CONFIG_DIR = Path(os.environ.get("APPDATA", Path.home() / "AppData" / "Roaming")) / "screenshot-translator"
@@ -22,7 +22,7 @@ class Config:
         if CONFIG_FILE.exists():
             try:
                 data = json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
-                known = {f.name for f in cls.__dataclass_fields__.values()}
+                known = {f.name for f in dc_fields(cls)}
                 filtered = {k: v for k, v in data.items() if k in known}
                 return cls(**filtered)
             except (json.JSONDecodeError, TypeError):
